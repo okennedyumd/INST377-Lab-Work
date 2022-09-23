@@ -3,3 +3,53 @@
     - The styles in this folder's `style.css`
     - The script in script.js, which should be included via a `<script src="script.js" >` call before your closing </body> tag 
 -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Owen Kennedy INST377</title>
+    <link rel='stylesheet' href='style.css'/>
+  </head>
+  <body>
+    <div class="header h1">
+        <h1>Owen Kennedy's Labs For INST377</h1>
+    </div>
+    <div class="container">
+        <div class="box left_section">
+            <h2>Album Names</h2>
+            <div class="box">
+                <ol>
+                    <li>Queens of The Stone Age - ...Like Clockwork</li>
+                    <li>Tyler Childers - Purgatory</li>
+                    <li>Tigers Jaw - Tigers Jaw</li>
+                    <li>Metallica - Master of Puppets</li>
+                    <li>MGMT - Oracular Spectacular</li>
+                </ol>
+            </div>
+        </div>
+        <div class="box right_section">
+            <h2>Image Carousel</h2>
+            <div class="carousel">
+                <button class="prev">prev</button>
+                <div class="slides">
+                    <div class='carousel_item visible'>
+                        <img id='slide_1' src='images/img1.png' alt='QOTSA'/></div>
+                    <div class='carousel_item hidden'>
+                        <img id='slide_2' src="images/img2.jpg" alt='QOTSA'/></div>
+                    <div class='carousel_item hidden'>
+                        <img id='slide_3' src='images/img3.png' alt='QOTSA'/></div>
+                    <div class='carousel_item hidden'>
+                        <img id='slide_4' src='images/img4.png' alt='QOTSA'/></div>
+                </div>
+                <button class="next">next</button>
+            </div>
+            <div class="box">
+                <p>These are images of Queen of the Stone Age albums.</p>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <p>My GitHub account: okennedyumd <a href='https://github.com/okennedyumd'>click here</a></p>
+    </footer>
+    <script src="script.js" ></script>
+  </body>
+</html>
