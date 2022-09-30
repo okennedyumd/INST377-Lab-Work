@@ -305,7 +305,6 @@ form input {
     /* check it out by using your developer tools to shrink your screen-size */
     .container {
       background-color: #367C2B;
-      width: 100%;
       flex-direction: column;
       justify-content: center;
       align-items: center;
