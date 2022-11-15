@@ -89,12 +89,24 @@ function initMap() {
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-}).addTo(map);
-return map;
+  }).addTo(map);
+  return map;
 }
 
-function markerPlace() {
+function markerPlace(array, map) {
   console.log('markerPlace', array);
+  // const marker = L.marker([51.5, -0.9]).addTo(map);
+  map.eachLayer((layer) => {
+    if (layer instanceof L.Marker) {
+      layer.remove();
+    }
+  });
+
+  array.forEach((item) => {
+    const {coordinates} = item.geocoded_column_1;
+    console.log(item);
+    L.marker([coordinates[1], coordinates[0]]).addTo(map);
+  });
 }
 
 async function mainEvent() {
@@ -125,14 +137,14 @@ async function mainEvent() {
         Dot notation is preferred in JS unless you have a good reason to use brackets
         The 'data' key, which we set at line 38 in foodServiceRoutes.js, contains all 1,000 records we need
       */
-  console.table(arrayFromJson.data);
+  // console.table(arrayFromJson.data);
 
   // in your browser console, try expanding this object to see what fields are available to work with
   // for example: arrayFromJson.data[0].name, etc
-  console.log(arrayFromJson.data[0]);
+  // console.log(arrayFromJson.data[0]);
 
   // this is called "string interpolation" and is how we build large text blocks with variables
-  console.log(`${arrayFromJson.data[0].name} ${arrayFromJson.data[0].category}`);
+  // console.log(`${arrayFromJson.data[0].name} ${arrayFromJson.data[0].category}`);
 
   // This IF statement ensures we can't do anything if we don't have information yet
   if (arrayFromJson.data?.length > 0) { // the question mark in this means "if this is set at all"
@@ -147,6 +159,7 @@ async function mainEvent() {
       console.log(event.target.value);
       const newFilterList = filterList(currentList, event.target.value);
       injectHTML(newFilterList);
+      markerPlace(newFilterList, pageMap);
     });
     form.addEventListener('submit', (submitEvent) => {
       // This is needed to stop our page from changing to a new URL even though it heard a GET request
@@ -158,6 +171,7 @@ async function mainEvent() {
 
       // And this function call will perform the "side effect" of injecting the HTML list for you
       injectHTML(currentList);
+      markerPlace(currentList, pageMap);
 
       // By separating the functions, we open the possibility of regenerating the list
       // without having to retrieve fresh data every time
